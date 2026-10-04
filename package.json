@@ -1,6 +1,6 @@
 {
   "name": "@niche-works/types",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "description": "",
   "keywords": [
@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mitsuhiroseino/niche-works-types.git"
+    "url": "git+https://github.com/mitsuhiroseino/niche-works-types.git"
   },
   "license": "MIT",
   "author": "Mitsuhiro Seino",
@@ -27,7 +27,7 @@
     "tidy": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\" --config ./prettier.tidy.config.js"
   },
   "devDependencies": {
-    "@niche-works/dev": "^0.5.4",
+    "@niche-works/dev": "^0.5.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^25.5.0",
     "fast-glob": "^3.3.3",

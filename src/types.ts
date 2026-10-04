@@ -118,3 +118,11 @@ export type KeyedIteratee<V, R> = (
   key: PropertyKey,
   data: Record<PropertyKey, V>,
 ) => R;
+
+/**
+ * プロパティの合成
+ */
+export type Composition<
+  BASE extends LooseDictionary,
+  ADDED extends LooseDictionary,
+> = Omit<BASE, keyof ADDED> & ADDED;
