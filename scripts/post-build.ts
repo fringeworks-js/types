@@ -1,4 +1,4 @@
-import generatePublishPackageJson from '@niche-works/dev/generatePublishPackageJson';
+import generatePublishPackageJson from '@fringeworks/dev/generatePublishPackageJson';
 import fs from 'fs-extra';
 
 async function postBuild() {

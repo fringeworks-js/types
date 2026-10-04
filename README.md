@@ -1,74 +1,74 @@
-# @niche-works/types
+# @fringeworks/types
 
-`@niche-works/types` is a niche library of TypeScript utility types.
+`@fringeworks/types` is a niche library of TypeScript utility types.
 
 **[日本語のREADMEはこちら](./README.ja.md)**
 
 ## Installation
 
 ```sh
-npm install @niche-works/types
+npm install @fringeworks/types
 ```
 
 ## Type Reference
 
 ### Value state types
 
-| Type      | Definition                               | Description                       |
-| --------- | ---------------------------------------- | --------------------------------- |
-| `Nullish` | `undefined \| null`                      | null or undefined                 |
-| `Empty`   | `Nullish \| ''`                          | Nullish plus empty string         |
-| `Falsy`   | `Empty \| false \| 0 \| -0 \| 0n \| NaN` | All JavaScript falsy values       |
+| Type      | Definition                               | Description                 |
+| --------- | ---------------------------------------- | --------------------------- |
+| `Nullish` | `undefined \| null`                      | null or undefined           |
+| `Empty`   | `Nullish \| ''`                          | Nullish plus empty string   |
+| `Falsy`   | `Empty \| false \| 0 \| -0 \| 0n \| NaN` | All JavaScript falsy values |
 
 ### Record types
 
 Generic record types whose keys are `PropertyKey` (`string | number | symbol`).
 
-| Type                | Definition                | Description                                          |
-| ------------------- | ------------------------- | ---------------------------------------------------- |
-| `FlexibleRecord<V>` | `Record<PropertyKey, V>`  | Base type with a generic value type                  |
-| `LooseRecord`       | `FlexibleRecord<any>`     | Flexibility-first type that accepts any value type   |
-| `StrictRecord`      | `FlexibleRecord<unknown>` | Safety-first type that requires a type guard to use  |
+| Type                | Definition                | Description                                         |
+| ------------------- | ------------------------- | --------------------------------------------------- |
+| `FlexibleRecord<V>` | `Record<PropertyKey, V>`  | Base type with a generic value type                 |
+| `LooseRecord`       | `FlexibleRecord<any>`     | Flexibility-first type that accepts any value type  |
+| `StrictRecord`      | `FlexibleRecord<unknown>` | Safety-first type that requires a type guard to use |
 
 ### Dictionary types
 
 Record types whose keys are `string` only.
 
-| Type                    | Definition                    | Description                                          |
-| ----------------------- | ----------------------------- | ---------------------------------------------------- |
-| `FlexibleDictionary<V>` | `Record<string, V>`           | Base type with a generic value type                  |
-| `LooseDictionary`       | `FlexibleDictionary<any>`     | Flexibility-first type that accepts any value type   |
-| `StrictDictionary`      | `FlexibleDictionary<unknown>` | Safety-first type that requires a type guard to use  |
+| Type                    | Definition                    | Description                                         |
+| ----------------------- | ----------------------------- | --------------------------------------------------- |
+| `FlexibleDictionary<V>` | `Record<string, V>`           | Base type with a generic value type                 |
+| `LooseDictionary`       | `FlexibleDictionary<any>`     | Flexibility-first type that accepts any value type  |
+| `StrictDictionary`      | `FlexibleDictionary<unknown>` | Safety-first type that requires a type guard to use |
 
 ### Array types
 
-| Type          | Definition  | Description                                              |
-| ------------- | ----------- | -------------------------------------------------------- |
-| `LooseArray`  | `any[]`     | Flexibility-first array type that accepts any element    |
+| Type          | Definition  | Description                                               |
+| ------------- | ----------- | --------------------------------------------------------- |
+| `LooseArray`  | `any[]`     | Flexibility-first array type that accepts any element     |
 | `StrictArray` | `unknown[]` | Safety-first array type that requires a type guard to use |
 
 ### Synchronous function types
 
-| Type                               | Description                                                  |
-| ---------------------------------- | ------------------------------------------------------------ |
-| `SyncFunction<P extends any[], R>` | Base type with configurable parameter type `P` and return type `R` |
-| `SyncLooseFunction`                | Flexibility-first type with `any` parameters and return value |
+| Type                               | Description                                                            |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| `SyncFunction<P extends any[], R>` | Base type with configurable parameter type `P` and return type `R`     |
+| `SyncLooseFunction`                | Flexibility-first type with `any` parameters and return value          |
 | `SyncStrictFunction`               | Safety-first type with `never[]` parameters and `unknown` return value |
 
 ### Asynchronous function types
 
-| Type                                | Description                                                           |
-| ----------------------------------- | --------------------------------------------------------------------- |
-| `AsyncFunction<P extends any[], R>` | Base type with configurable parameter type `P` and return `Promise<R>` |
-| `AsyncLooseFunction`                | Flexibility-first type with `any` parameters and return value         |
+| Type                                | Description                                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------- |
+| `AsyncFunction<P extends any[], R>` | Base type with configurable parameter type `P` and return `Promise<R>`          |
+| `AsyncLooseFunction`                | Flexibility-first type with `any` parameters and return value                   |
 | `AsyncStrictFunction`               | Safety-first type with `never[]` parameters and `Promise<unknown>` return value |
 
 ### Iteratee types
 
-| Type                    | Signature                                                         | Description                              |
-| ----------------------- | ----------------------------------------------------------------- | ---------------------------------------- |
-| `IndexedIteratee<V, R>` | `(value: V, index: number, data: V[]) => R`                       | Callback for iterating over arrays       |
-| `KeyedIteratee<V, R>`   | `(value: V, key: PropertyKey, data: Record<PropertyKey, V>) => R` | Callback for iterating over objects      |
+| Type                    | Signature                                                         | Description                         |
+| ----------------------- | ----------------------------------------------------------------- | ----------------------------------- |
+| `IndexedIteratee<V, R>` | `(value: V, index: number, data: V[]) => R`                       | Callback for iterating over arrays  |
+| `KeyedIteratee<V, R>`   | `(value: V, key: PropertyKey, data: Record<PropertyKey, V>) => R` | Callback for iterating over objects |
 
 ## Advanced utility types
 
@@ -77,7 +77,7 @@ Record types whose keys are `string` only.
 Generates a union type of the keys of a record. When `TYPE` is specified, only keys whose values extend that type are included.
 
 ```ts
-import type { Keys } from '@niche-works/types';
+import type { Keys } from '@fringeworks/types';
 
 type Props = {
   id: number;
@@ -101,7 +101,7 @@ Generates a new type by prepending a camelCase prefix to the specified propertie
 When `KEYS` is omitted, all properties are targeted.
 
 ```ts
-import type { Prefixed } from '@niche-works/types';
+import type { Prefixed } from '@fringeworks/types';
 
 type Props = {
   width: number;
@@ -124,7 +124,7 @@ Generates a new union type by prepending a camelCase prefix to the members of a 
 When `KEYS` is omitted, all members are targeted.
 
 ```ts
-import type { PrefixedUnion } from '@niche-works/types';
+import type { PrefixedUnion } from '@fringeworks/types';
 
 type Direction = 'top' | 'right' | 'bottom' | 'left';
 

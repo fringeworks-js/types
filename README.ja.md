@@ -1,13 +1,13 @@
-# @niche-works/types
+# @fringeworks/types
 
-`@niche-works/types` は TypeScript のニッチな型ユーティリティライブラリです。
+`@fringeworks/types` は TypeScript のニッチな型ユーティリティライブラリです。
 
 **[English README is available here](./README.md)**
 
 ## インストール
 
 ```sh
-npm install @niche-works/types
+npm install @fringeworks/types
 ```
 
 ## 型一覧
@@ -77,7 +77,7 @@ npm install @niche-works/types
 レコードのキーのユニオン型を生成します。`TYPE` を指定するとその型の値を持つキーのみを抽出します。
 
 ```ts
-import type { Keys } from '@niche-works/types';
+import type { Keys } from '@fringeworks/types';
 
 type Props = {
   id: number;
@@ -101,7 +101,7 @@ type StringKeys = Keys<Props, string>;
 `KEYS` を省略すると全プロパティが対象になります。
 
 ```ts
-import type { Prefixed } from '@niche-works/types';
+import type { Prefixed } from '@fringeworks/types';
 
 type Props = {
   width: number;
@@ -124,7 +124,7 @@ type PartialPrefixedProps = Prefixed<'default', Props, 'width' | 'height'>;
 `KEYS` を省略すると全ての値が対象になります。
 
 ```ts
-import type { PrefixedUnion } from '@niche-works/types';
+import type { PrefixedUnion } from '@fringeworks/types';
 
 type Direction = 'top' | 'right' | 'bottom' | 'left';
 
