@@ -1,6 +1,6 @@
 # @fringeworks/types
 
-`@fringeworks/types` is a niche library of TypeScript utility types.
+`@fringeworks/types` is a library some will find handy, offering TypeScript utility types.
 
 **[日本語のREADMEはこちら](./README.ja.md)**
 

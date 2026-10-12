@@ -1,6 +1,6 @@
 # @fringeworks/types
 
-`@fringeworks/types` は TypeScript のニッチな型ユーティリティライブラリです。
+`@fringeworks/types` は TypeScript の型ユーティリティを集めた、誰かにとっては便利なライブラリです。
 
 **[English README is available here](./README.md)**
 
