@@ -6,6 +6,6 @@
  * @template RECORD 対象のレコード
  * @template TYPE 対象の値の型
  */
-export type Keys<RECORD extends object, TYPE = any> = {
+export type Keys<RECORD extends object, TYPE = unknown> = {
   [KEY in keyof RECORD]-?: Required<RECORD>[KEY] extends TYPE ? KEY : never;
 }[keyof RECORD];

@@ -34,6 +34,8 @@ export type FlexibleRecord<VALUE = unknown> = Record<PropertyKey, VALUE>;
  * キーは文字列・数値・シンボルの汎用的なレコード型
  * 型安全性よりも柔軟性を優先する場合に使用
  */
+// 柔軟性を優先する型のため、any を使う
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type LooseRecord = FlexibleRecord<any>;
 
 /**
@@ -54,6 +56,8 @@ export type FlexibleDictionary<VALUE = unknown> = Record<string, VALUE>;
  * キーは文字列のみの汎用的なディクショナリー型
  * 型安全性よりも柔軟性を優先する場合に使用
  */
+// 柔軟性を優先する型のため、any を使う
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type LooseDictionary = FlexibleDictionary<any>;
 
 /**
@@ -68,6 +72,8 @@ export type StrictDictionary = FlexibleDictionary<unknown>;
  * 汎用的な配列型
  * 型安全性よりも柔軟性を優先する場合に使用
  */
+// 柔軟性を優先する型のため、any を使う
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type LooseArray = any[];
 
 /**
@@ -83,15 +89,18 @@ export type StrictArray = unknown[];
  * @template PARAMS 引数の型（タプルの配列形式、デフォルトは never[]）
  * @template RESULT 戻り値の型（デフォルトは unknown）
  */
-export type SyncFunction<PARAMS extends any[] = never[], RESULT = unknown> = (
-  ...args: PARAMS
-) => RESULT;
+export type SyncFunction<
+  PARAMS extends unknown[] = never[],
+  RESULT = unknown,
+> = (...args: PARAMS) => RESULT;
 
 /**
  * 型安全性よりも柔軟性を優先した同期関数型
  * どんな引数でも受け入れ、戻り値も `any` として自由に扱える
  * 既存のJavaScriptライブラリとの連携や、型定義を緩くする場合に使用する。
  */
+// 柔軟性を優先する型のため、any を使う
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type SyncLooseFunction = SyncFunction<any[], any>;
 
 /**
@@ -108,15 +117,18 @@ export type SyncStrictFunction = SyncFunction<never[], unknown>;
  * @template PARAMS 引数の型（タプルの配列形式、デフォルトは never[]）
  * @template RESULT 戻り値の`Promise`が解決する型（デフォルトは unknown）
  */
-export type AsyncFunction<PARAMS extends any[] = never[], RESULT = unknown> = (
-  ...args: PARAMS
-) => Promise<RESULT>;
+export type AsyncFunction<
+  PARAMS extends unknown[] = never[],
+  RESULT = unknown,
+> = (...args: PARAMS) => Promise<RESULT>;
 
 /**
  * 型安全性よりも柔軟性を優先した非同期関数型
  * どんな引数でも受け入れ、`Promise`の解決値も `any` として自由に扱える
  * 既存のJavaScriptライブラリとの連携や、型定義を緩くする場合に使用する。
  */
+// 柔軟性を優先する型のため、any を使う
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AsyncLooseFunction = AsyncFunction<any[], any>;
 
 /**

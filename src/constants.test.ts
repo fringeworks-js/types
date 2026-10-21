@@ -31,6 +31,8 @@ describe('ToStringResult', () => {
     [
       ToStringResult.Arguments,
       (function () {
+        // Arguments オブジェクトそのものを作るため、rest 引数（配列になる）は使えない
+        // eslint-disable-next-line prefer-rest-params
         return arguments;
       })(),
     ],

@@ -10,7 +10,9 @@ export type Prefixed<
   RECORD extends object,
   KEYS extends keyof RECORD = keyof RECORD,
 > = {
-  [KEY in keyof RECORD as KEY extends KEYS & string
-    ? `${PREFIX}${Capitalize<KEY>}`
-    : KEY]: RECORD[KEY];
+  [
+    KEY in keyof RECORD as KEY extends KEYS & string
+      ? `${PREFIX}${Capitalize<KEY>}`
+      : KEY
+  ]: RECORD[KEY];
 };
