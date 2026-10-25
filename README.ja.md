@@ -46,23 +46,21 @@ function getType(value: unknown): TypeOfResult {
 
 ### レコード型
 
-キーが `PropertyKey`（`string | number | symbol`）の汎用レコード型です。
+キーが `PropertyKey`（`string | number | symbol`）の汎用レコード型です。値の型を指定する場合は、`Record<PropertyKey, VALUE>` を直接使います。
 
-| 型                      | 定義                         | 説明                                     |
-| ----------------------- | ---------------------------- | ---------------------------------------- |
-| `FlexibleRecord<VALUE>` | `Record<PropertyKey, VALUE>` | 値の型をジェネリクスで指定できるベース型 |
-| `LooseRecord`           | `FlexibleRecord<any>`        | 値の型を問わない柔軟性優先の型           |
-| `StrictRecord`          | `FlexibleRecord<unknown>`    | 使用時に型ガードが必要な型安全優先の型   |
+| 型             | 定義                           | 説明                                   |
+| -------------- | ------------------------------ | -------------------------------------- |
+| `LooseRecord`  | `Record<PropertyKey, any>`     | 値の型を問わない柔軟性優先の型         |
+| `StrictRecord` | `Record<PropertyKey, unknown>` | 使用時に型ガードが必要な型安全優先の型 |
 
 ### ディクショナリー型
 
-キーが `string` のみのレコード型です。
+キーが `string` のみのレコード型です。値の型を指定する場合は、`Record<string, VALUE>` を直接使います。
 
-| 型                          | 定義                          | 説明                                     |
-| --------------------------- | ----------------------------- | ---------------------------------------- |
-| `FlexibleDictionary<VALUE>` | `Record<string, VALUE>`       | 値の型をジェネリクスで指定できるベース型 |
-| `LooseDictionary`           | `FlexibleDictionary<any>`     | 値の型を問わない柔軟性優先の型           |
-| `StrictDictionary`          | `FlexibleDictionary<unknown>` | 使用時に型ガードが必要な型安全優先の型   |
+| 型                 | 定義                      | 説明                                   |
+| ------------------ | ------------------------- | -------------------------------------- |
+| `LooseDictionary`  | `Record<string, any>`     | 値の型を問わない柔軟性優先の型         |
+| `StrictDictionary` | `Record<string, unknown>` | 使用時に型ガードが必要な型安全優先の型 |
 
 ### 配列型
 
@@ -73,28 +71,25 @@ function getType(value: unknown): TypeOfResult {
 
 ### 同期関数型
 
-| 型                                           | 説明                                                 |
-| -------------------------------------------- | ---------------------------------------------------- |
-| `SyncFunction<PARAMS extends any[], RESULT>` | 引数 `PARAMS` と戻り値 `RESULT` を指定できるベース型 |
-| `SyncLooseFunction`                          | 引数・戻り値ともに `any` の柔軟性優先型              |
-| `SyncStrictFunction`                         | 引数 `never[]`・戻り値 `unknown` の型安全優先型      |
+| 型                             | 説明                                                                                               |
+| ------------------------------ | -------------------------------------------------------------------------------------------------- |
+| `SyncFunction<PARAMS, RESULT>` | 引数 `PARAMS`（タプル。既定は `never[]`）と戻り値 `RESULT`（既定は `unknown`）を指定できるベース型 |
+| `LooseSyncFunction`            | 引数・戻り値ともに `any` の柔軟性優先型                                                            |
+| `StrictSyncFunction`           | 引数 `never[]`・戻り値 `unknown` の型安全優先型。既定値の `SyncFunction` と同じ                    |
 
 ### 非同期関数型
 
-| 型                                            | 説明                                                          |
-| --------------------------------------------- | ------------------------------------------------------------- |
-| `AsyncFunction<PARAMS extends any[], RESULT>` | 引数 `PARAMS` と戻り値 `Promise<RESULT>` を指定できるベース型 |
-| `AsyncLooseFunction`                          | 引数・戻り値ともに `any` の柔軟性優先型                       |
-| `AsyncStrictFunction`                         | 引数 `never[]`・戻り値 `Promise<unknown>` の型安全優先型      |
+| 型                              | 説明                                                                                                                   |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `AsyncFunction<PARAMS, RESULT>` | 引数 `PARAMS`（タプル。既定は `never[]`）と戻り値 `Promise<RESULT>`（`RESULT` の既定は `unknown`）を指定できるベース型 |
+| `LooseAsyncFunction`            | 引数・戻り値ともに `any` の柔軟性優先型                                                                                |
+| `StrictAsyncFunction`           | 引数 `never[]`・戻り値 `Promise<unknown>` の型安全優先型。既定値の `AsyncFunction` と同じ                              |
 
 ### イテレーター型
 
-| 型                                   | シグネチャ                                                               | 説明                                     |
-| ------------------------------------ | ------------------------------------------------------------------------ | ---------------------------------------- |
-| `IndexedIteratee<VALUE, RESULT>`     | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT`        | 配列の繰り返し処理のコールバック         |
-| `KeyedIteratee<VALUE, RESULT, KEY?>` | `(value: VALUE, key: KEY, data: Readonly<Record<KEY, VALUE>>) => RESULT` | オブジェクトの繰り返し処理のコールバック |
-
-`KeyedIteratee` の `KEY` は `PropertyKey` の部分型で、省略すると `Object.keys` などと同じ `string` になります。
+| 型                               | シグネチャ                                                        | 説明                             |
+| -------------------------------- | ----------------------------------------------------------------- | -------------------------------- |
+| `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | 配列の繰り返し処理のコールバック |
 
 ## 高度なユーティリティ型
 

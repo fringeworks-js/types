@@ -46,23 +46,21 @@ function getType(value: unknown): TypeOfResult {
 
 ### Record types
 
-Generic record types whose keys are `PropertyKey` (`string | number | symbol`).
+Generic record types whose keys are `PropertyKey` (`string | number | symbol`). To specify the value type, use `Record<PropertyKey, VALUE>` directly.
 
-| Type                    | Definition                   | Description                                         |
-| ----------------------- | ---------------------------- | --------------------------------------------------- |
-| `FlexibleRecord<VALUE>` | `Record<PropertyKey, VALUE>` | Base type with a generic value type                 |
-| `LooseRecord`           | `FlexibleRecord<any>`        | Flexibility-first type that accepts any value type  |
-| `StrictRecord`          | `FlexibleRecord<unknown>`    | Safety-first type that requires a type guard to use |
+| Type           | Definition                     | Description                                         |
+| -------------- | ------------------------------ | --------------------------------------------------- |
+| `LooseRecord`  | `Record<PropertyKey, any>`     | Flexibility-first type that accepts any value type  |
+| `StrictRecord` | `Record<PropertyKey, unknown>` | Safety-first type that requires a type guard to use |
 
 ### Dictionary types
 
-Record types whose keys are `string` only.
+Record types whose keys are `string` only. To specify the value type, use `Record<string, VALUE>` directly.
 
-| Type                        | Definition                    | Description                                         |
-| --------------------------- | ----------------------------- | --------------------------------------------------- |
-| `FlexibleDictionary<VALUE>` | `Record<string, VALUE>`       | Base type with a generic value type                 |
-| `LooseDictionary`           | `FlexibleDictionary<any>`     | Flexibility-first type that accepts any value type  |
-| `StrictDictionary`          | `FlexibleDictionary<unknown>` | Safety-first type that requires a type guard to use |
+| Type               | Definition                | Description                                         |
+| ------------------ | ------------------------- | --------------------------------------------------- |
+| `LooseDictionary`  | `Record<string, any>`     | Flexibility-first type that accepts any value type  |
+| `StrictDictionary` | `Record<string, unknown>` | Safety-first type that requires a type guard to use |
 
 ### Array types
 
@@ -73,28 +71,25 @@ Record types whose keys are `string` only.
 
 ### Synchronous function types
 
-| Type                                         | Description                                                                  |
-| -------------------------------------------- | ---------------------------------------------------------------------------- |
-| `SyncFunction<PARAMS extends any[], RESULT>` | Base type with configurable parameter type `PARAMS` and return type `RESULT` |
-| `SyncLooseFunction`                          | Flexibility-first type with `any` parameters and return value                |
-| `SyncStrictFunction`                         | Safety-first type with `never[]` parameters and `unknown` return value       |
+| Type                           | Description                                                                                                                   |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `SyncFunction<PARAMS, RESULT>` | Base type with configurable parameter type `PARAMS` (a tuple, default `never[]`) and return type `RESULT` (default `unknown`) |
+| `LooseSyncFunction`            | Flexibility-first type with `any` parameters and return value                                                                 |
+| `StrictSyncFunction`           | Safety-first type with `never[]` parameters and `unknown` return value. Same as `SyncFunction` with the defaults              |
 
 ### Asynchronous function types
 
-| Type                                          | Description                                                                      |
-| --------------------------------------------- | -------------------------------------------------------------------------------- |
-| `AsyncFunction<PARAMS extends any[], RESULT>` | Base type with configurable parameter type `PARAMS` and return `Promise<RESULT>` |
-| `AsyncLooseFunction`                          | Flexibility-first type with `any` parameters and return value                    |
-| `AsyncStrictFunction`                         | Safety-first type with `never[]` parameters and `Promise<unknown>` return value  |
+| Type                            | Description                                                                                                                                    |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AsyncFunction<PARAMS, RESULT>` | Base type with configurable parameter type `PARAMS` (a tuple, default `never[]`) and return `Promise<RESULT>` (`RESULT` defaults to `unknown`) |
+| `LooseAsyncFunction`            | Flexibility-first type with `any` parameters and return value                                                                                  |
+| `StrictAsyncFunction`           | Safety-first type with `never[]` parameters and `Promise<unknown>` return value. Same as `AsyncFunction` with the defaults                     |
 
 ### Iteratee types
 
-| Type                                 | Signature                                                                | Description                         |
-| ------------------------------------ | ------------------------------------------------------------------------ | ----------------------------------- |
-| `IndexedIteratee<VALUE, RESULT>`     | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT`        | Callback for iterating over arrays  |
-| `KeyedIteratee<VALUE, RESULT, KEY?>` | `(value: VALUE, key: KEY, data: Readonly<Record<KEY, VALUE>>) => RESULT` | Callback for iterating over objects |
-
-`KEY` of `KeyedIteratee` is a subtype of `PropertyKey`. When omitted, it is `string`, matching `Object.keys` and similar methods.
+| Type                             | Signature                                                         | Description                        |
+| -------------------------------- | ----------------------------------------------------------------- | ---------------------------------- |
+| `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | Callback for iterating over arrays |
 
 ## Advanced utility types
 
