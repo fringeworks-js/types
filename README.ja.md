@@ -91,6 +91,26 @@ function getType(value: unknown): TypeOfResult {
 | -------------------------------- | ----------------------------------------------------------------- | -------------------------------- |
 | `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | 配列の繰り返し処理のコールバック |
 
+### 色の型
+
+| 型                | 定義                                                     | 説明                                           |
+| ----------------- | -------------------------------------------------------- | ---------------------------------------------- |
+| `AbsoluteColor`   | `HexColor \| FunctionalColor \| NamedColor`              | 具体的な色の値。16進数の色・色の関数・色の名前 |
+| `HexColor`        | `` `#${string}` ``                                       | 16進数の色                                     |
+| `FunctionalColor` | `` `rgb(${string})` `` \| … \| `` `color(${string})` ``  | 色の関数で書いた色                             |
+| `NamedColor`      | `'aliceblue'` \| … \| `'yellowgreen'` \| `'transparent'` | CSS の色の名前（148個と `transparent`）        |
+
+`AbsoluteColor` は、JavaScript で色を計算するものが受け取るための型です。CSS の変数（`var()`）・`currentColor`・`inherit` など、描くときまで決まらない値は型エラーになります。`FunctionalColor` は、色の関数 `rgb()`・`rgba()`・`hsl()`・`hsla()`・`hwb()`・`lab()`・`lch()`・`oklab()`・`oklch()`・`color()` を受け付けます（`color-mix()` などは含みません）。
+
+型で確かめるのは書き方だけで、中身（`'#zzz'` など）は確かめません。色の名前と関数の名前は、小文字だけを受け付けます。
+
+```ts
+import type { AbsoluteColor } from '@fringeworks/types';
+
+const accent: AbsoluteColor = '#2f6fde'; // OK
+const brand: AbsoluteColor = 'var(--brand)'; // 型エラー
+```
+
 ## 高度なユーティリティ型
 
 ### `Keys<RECORD, TYPE>`

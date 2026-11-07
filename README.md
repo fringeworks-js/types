@@ -91,6 +91,26 @@ Record types whose keys are `string` only. To specify the value type, use `Recor
 | -------------------------------- | ----------------------------------------------------------------- | ---------------------------------- |
 | `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | Callback for iterating over arrays |
 
+### Color types
+
+| Type              | Definition                                               | Description                                                         |
+| ----------------- | -------------------------------------------------------- | ------------------------------------------------------------------- |
+| `AbsoluteColor`   | `HexColor \| FunctionalColor \| NamedColor`              | A concrete color value: hex colors, color functions, or color names |
+| `HexColor`        | `` `#${string}` ``                                       | A hex color                                                         |
+| `FunctionalColor` | `` `rgb(${string})` `` \| … \| `` `color(${string})` ``  | A color written with a color function                               |
+| `NamedColor`      | `'aliceblue'` \| … \| `'yellowgreen'` \| `'transparent'` | CSS color names (the 148 names and `transparent`)                   |
+
+`AbsoluteColor` is for code that computes colors in JavaScript. Values that are not decided until rendering, such as CSS variables (`var()`), `currentColor`, and `inherit`, are type errors. `FunctionalColor` accepts the color functions `rgb()`, `rgba()`, `hsl()`, `hsla()`, `hwb()`, `lab()`, `lch()`, `oklab()`, `oklch()`, and `color()` (not `color-mix()` and the like).
+
+The type checks only the syntax, not the content (such as `'#zzz'`). Color names and function names are accepted in lowercase only.
+
+```ts
+import type { AbsoluteColor } from '@fringeworks/types';
+
+const accent: AbsoluteColor = '#2f6fde'; // OK
+const brand: AbsoluteColor = 'var(--brand)'; // Type error
+```
+
 ## Advanced utility types
 
 ### `Keys<RECORD, TYPE>`

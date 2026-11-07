@@ -1,3 +1,4 @@
+export type * from './AbsoluteColor';
 export * from './constants';
 export type * from './Keys';
 export type * from './Override';
