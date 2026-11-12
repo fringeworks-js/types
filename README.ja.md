@@ -87,9 +87,11 @@ function getType(value: unknown): TypeOfResult {
 
 ### イテレーター型
 
-| 型                               | シグネチャ                                                        | 説明                             |
-| -------------------------------- | ----------------------------------------------------------------- | -------------------------------- |
-| `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | 配列の繰り返し処理のコールバック |
+| 型                               | シグネチャ                                                        | 説明                                                                                         |
+| -------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | 配列の繰り返し処理のコールバック                                                             |
+| `FilterFunction<VALUE>`          | `(value: VALUE) => boolean`                                       | 要素が条件に合うかを判定する関数。`Array.prototype.filter` に渡せる                          |
+| `SortFunction<VALUE>`            | `(a: VALUE, b: VALUE) => number`                                  | 2つの要素の順序を返す比較の関数（`a` を先にするなら負の数）。`Array.prototype.sort` に渡せる |
 
 ### 色の型
 

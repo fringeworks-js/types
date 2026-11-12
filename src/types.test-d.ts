@@ -2,6 +2,7 @@ import type {
   AsyncFunction,
   Empty,
   Falsy,
+  FilterFunction,
   IndexedIteratee,
   LooseAsyncFunction,
   LooseDictionary,
@@ -9,6 +10,7 @@ import type {
   LooseSyncFunction,
   Nullish,
   Primitive,
+  SortFunction,
   StrictAsyncFunction,
   StrictDictionary,
   StrictRecord,
@@ -92,5 +94,17 @@ describe('イテレーター型', () => {
     const data: readonly number[] = [1, 2];
     const iteratee: IndexedIteratee<number, void> = () => {};
     expectTypeOf(data.forEach).toBeCallableWith(iteratee);
+  });
+
+  test('FilterFunction は Array.prototype.filter に渡せる', () => {
+    const data: readonly number[] = [1, 2];
+    const filter: FilterFunction<number> = (value) => value > 1;
+    expectTypeOf(data.filter(filter)).toEqualTypeOf<number[]>();
+  });
+
+  test('SortFunction は Array.prototype.sort に渡せる', () => {
+    const data: number[] = [2, 1];
+    const sort: SortFunction<number> = (a, b) => a - b;
+    expectTypeOf(data.sort).toBeCallableWith(sort);
   });
 });

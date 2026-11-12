@@ -3,6 +3,19 @@
 All notable changes to `@fringeworks/types` are documented in this file.\
 This project follows [Semantic Versioning](https://semver.org/).
 
+## 1.2.0 - 2026-11-12
+
+### Added
+
+- `FilterFunction<VALUE>`: a function that tells whether an element matches a condition (`(value) => boolean`, for `Array.prototype.filter`)
+- `SortFunction<VALUE>`: a comparison function that returns the order of two elements (`(a, b) => number`, for `Array.prototype.sort`)
+
+## 1.1.1 - 2026-11-07
+
+### Changed
+
+- Updated the development dependencies. There are no changes to the types or constants.
+
 ## 1.1.0 - 2026-11-07
 
 ### Added

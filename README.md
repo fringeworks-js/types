@@ -87,9 +87,11 @@ Record types whose keys are `string` only. To specify the value type, use `Recor
 
 ### Iteratee types
 
-| Type                             | Signature                                                         | Description                        |
-| -------------------------------- | ----------------------------------------------------------------- | ---------------------------------- |
-| `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | Callback for iterating over arrays |
+| Type                             | Signature                                                         | Description                                                                                                                     |
+| -------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | Callback for iterating over arrays                                                                                              |
+| `FilterFunction<VALUE>`          | `(value: VALUE) => boolean`                                       | Function that tells whether an element matches a condition. Can be passed to `Array.prototype.filter`                           |
+| `SortFunction<VALUE>`            | `(a: VALUE, b: VALUE) => number`                                  | Comparison function that returns the order of two elements (negative to put `a` first). Can be passed to `Array.prototype.sort` |
 
 ### Color types
 

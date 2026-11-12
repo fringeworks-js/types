@@ -138,3 +138,16 @@ export type IndexedIteratee<VALUE, RESULT> = (
   index: number,
   data: readonly VALUE[],
 ) => RESULT;
+
+/**
+ * 要素が条件に合うかを判定する関数（`Array.prototype.filter` に渡せる）
+ * @template VALUE 要素の型
+ */
+export type FilterFunction<VALUE> = (value: VALUE) => boolean;
+
+/**
+ * 2つの要素の順序を返す比較の関数（`Array.prototype.sort` に渡せる）\
+ * `a` を先にするなら負の数、`b` を先にするなら正の数、同じ順位なら 0 を返す
+ * @template VALUE 要素の型
+ */
+export type SortFunction<VALUE> = (a: VALUE, b: VALUE) => number;
