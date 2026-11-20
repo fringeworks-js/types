@@ -3,6 +3,17 @@
 All notable changes to `@fringeworks/types` are documented in this file.\
 This project follows [Semantic Versioning](https://semver.org/).
 
+## 1.3.0 - Unreleased
+
+### Added
+
+- `FormatFunction<VALUE, RESULT>`: a function that turns a value into a display string or similar (`(value) => RESULT`; `RESULT` defaults to `string`)
+- `FormatObject<VALUE, RESULT>`: an object with a `format` method, such as `Intl.NumberFormat` and `Intl.DateTimeFormat`
+- `Formatter<VALUE, RESULT>`: the union of `FormatFunction` and `FormatObject`
+- `EqualityFunction<VALUE>`: a function that tells whether two values are equal (`(a, b) => boolean`, for `isEqual` options)
+- `Interpolator<VALUE>`: a function that returns a value for the progress `t` (0 to 1), the same shape as interpolators in d3-interpolate
+- `EasingFunction`: a function that turns the progress `t` into eased progress (`(t) => number`)
+
 ## 1.2.0 - 2026-11-12
 
 ### Added

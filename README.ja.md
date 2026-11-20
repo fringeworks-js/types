@@ -92,6 +92,22 @@ function getType(value: unknown): TypeOfResult {
 | `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | 配列の繰り返し処理のコールバック                                                             |
 | `FilterFunction<VALUE>`          | `(value: VALUE) => boolean`                                       | 要素が条件に合うかを判定する関数。`Array.prototype.filter` に渡せる                          |
 | `SortFunction<VALUE>`            | `(a: VALUE, b: VALUE) => number`                                  | 2つの要素の順序を返す比較の関数（`a` を先にするなら負の数）。`Array.prototype.sort` に渡せる |
+| `EqualityFunction<VALUE>`        | `(a: VALUE, b: VALUE) => boolean`                                 | 2つの値が等しいかを判定する関数。`isEqual` のオプションに渡す                                |
+
+### 書式化の型
+
+| 型                              | シグネチャ                                                     | 説明                                                                                                                                                |
+| ------------------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `FormatFunction<VALUE, RESULT>` | `(value: VALUE) => RESULT`                                     | 値を表示用の文字列などに変える関数。`RESULT` の既定は `string`                                                                                      |
+| `FormatObject<VALUE, RESULT>`   | `{ format(value: VALUE): RESULT }`                             | 値を表示用の文字列などに変える `format` メソッドを持つオブジェクト。`Intl.NumberFormat`・`Intl.DateTimeFormat` を渡せる。`RESULT` の既定は `string` |
+| `Formatter<VALUE, RESULT>`      | `FormatFunction<VALUE, RESULT> \| FormatObject<VALUE, RESULT>` | 関数とオブジェクトのどちらでも受け付けるときの型。`RESULT` の既定は `string`                                                                        |
+
+### アニメーションの型
+
+| 型                    | シグネチャ              | 説明                                                                                |
+| --------------------- | ----------------------- | ----------------------------------------------------------------------------------- |
+| `Interpolator<VALUE>` | `(t: number) => VALUE`  | 進み具合 `t`（0 〜 1）に応じた値を返す関数。d3-interpolate の interpolator と同じ形 |
+| `EasingFunction`      | `(t: number) => number` | 進み具合 `t` を、イージングを掛けた進み具合に変える関数                             |
 
 ### 色の型
 

@@ -92,6 +92,22 @@ Record types whose keys are `string` only. To specify the value type, use `Recor
 | `IndexedIteratee<VALUE, RESULT>` | `(value: VALUE, index: number, data: readonly VALUE[]) => RESULT` | Callback for iterating over arrays                                                                                              |
 | `FilterFunction<VALUE>`          | `(value: VALUE) => boolean`                                       | Function that tells whether an element matches a condition. Can be passed to `Array.prototype.filter`                           |
 | `SortFunction<VALUE>`            | `(a: VALUE, b: VALUE) => number`                                  | Comparison function that returns the order of two elements (negative to put `a` first). Can be passed to `Array.prototype.sort` |
+| `EqualityFunction<VALUE>`        | `(a: VALUE, b: VALUE) => boolean`                                 | Function that tells whether two values are equal. Passed to `isEqual` options                                                   |
+
+### Formatting types
+
+| Type                            | Signature                                                      | Description                                                                                                                                                             |
+| ------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `FormatFunction<VALUE, RESULT>` | `(value: VALUE) => RESULT`                                     | Function that turns a value into a display string or similar. `RESULT` defaults to `string`                                                                             |
+| `FormatObject<VALUE, RESULT>`   | `{ format(value: VALUE): RESULT }`                             | Object with a `format` method that turns a value into a display string or similar. Accepts `Intl.NumberFormat` and `Intl.DateTimeFormat`. `RESULT` defaults to `string` |
+| `Formatter<VALUE, RESULT>`      | `FormatFunction<VALUE, RESULT> \| FormatObject<VALUE, RESULT>` | Type that accepts either the function or the object. `RESULT` defaults to `string`                                                                                      |
+
+### Animation types
+
+| Type                  | Signature               | Description                                                                                                    |
+| --------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `Interpolator<VALUE>` | `(t: number) => VALUE`  | Function that returns a value for the progress `t` (0 to 1). The same shape as interpolators in d3-interpolate |
+| `EasingFunction`      | `(t: number) => number` | Function that turns the progress `t` into eased progress                                                       |
 
 ### Color types
 

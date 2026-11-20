@@ -151,3 +151,48 @@ export type FilterFunction<VALUE> = (value: VALUE) => boolean;
  * @template VALUE 要素の型
  */
 export type SortFunction<VALUE> = (a: VALUE, b: VALUE) => number;
+
+/**
+ * 2つの値が等しいかを判定する関数（`isEqual` のオプションに渡す）
+ * @template VALUE 値の型
+ */
+export type EqualityFunction<VALUE> = (a: VALUE, b: VALUE) => boolean;
+
+// ---- 書式化の型 ----
+
+/**
+ * 値を表示用の文字列などに変える関数
+ * @template VALUE 変える値の型
+ * @template RESULT 変えた値の型（既定は `string`）
+ */
+export type FormatFunction<VALUE, RESULT = string> = (value: VALUE) => RESULT;
+
+/**
+ * 値を表示用の文字列などに変える `format` メソッドを持つオブジェクト（`Intl.NumberFormat`・`Intl.DateTimeFormat` など）
+ * @template VALUE 変える値の型
+ * @template RESULT 変えた値の型（既定は `string`）
+ */
+export type FormatObject<VALUE, RESULT = string> = {
+  format(value: VALUE): RESULT;
+};
+
+/**
+ * 値を表示用の文字列などに変える関数、または `format` メソッドを持つオブジェクト
+ * @template VALUE 変える値の型
+ * @template RESULT 変えた値の型（既定は `string`）
+ */
+export type Formatter<VALUE, RESULT = string> =
+  FormatFunction<VALUE, RESULT> | FormatObject<VALUE, RESULT>;
+
+// ---- アニメーションの型 ----
+
+/**
+ * 進み具合 `t`（0 〜 1）に応じた値を返す関数（d3-interpolate の interpolator と同じ形）
+ * @template VALUE 返す値の型
+ */
+export type Interpolator<VALUE> = (t: number) => VALUE;
+
+/**
+ * 進み具合 `t`（0 〜 1）を、イージングを掛けた進み具合に変える関数
+ */
+export type EasingFunction = (t: number) => number;

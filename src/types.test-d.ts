@@ -1,9 +1,15 @@
 import type {
   AsyncFunction,
+  EasingFunction,
   Empty,
+  EqualityFunction,
   Falsy,
   FilterFunction,
+  FormatFunction,
+  FormatObject,
+  Formatter,
   IndexedIteratee,
+  Interpolator,
   LooseAsyncFunction,
   LooseDictionary,
   LooseRecord,
@@ -106,5 +112,47 @@ describe('イテレーター型', () => {
     const data: number[] = [2, 1];
     const sort: SortFunction<number> = (a, b) => a - b;
     expectTypeOf(data.sort).toBeCallableWith(sort);
+  });
+
+  test('EqualityFunction は2つの値を受け取り boolean を返す', () => {
+    expectTypeOf<EqualityFunction<number>>().toEqualTypeOf<
+      (a: number, b: number) => boolean
+    >();
+    expectTypeOf(Object.is).toExtend<EqualityFunction<number>>();
+  });
+});
+
+describe('書式化の型', () => {
+  test('FormatFunction は値を変える関数', () => {
+    expectTypeOf<FormatFunction<number>>().toEqualTypeOf<
+      (value: number) => string
+    >();
+    expectTypeOf<FormatFunction<Date, boolean>>().toEqualTypeOf<
+      (value: Date) => boolean
+    >();
+  });
+
+  test('FormatObject に Intl.NumberFormat・Intl.DateTimeFormat を渡せる', () => {
+    expectTypeOf<Intl.NumberFormat>().toExtend<FormatObject<number>>();
+    expectTypeOf<Intl.DateTimeFormat>().toExtend<FormatObject<Date>>();
+  });
+
+  test('Formatter は FormatFunction と FormatObject の union', () => {
+    expectTypeOf<Formatter<number>>().toEqualTypeOf<
+      FormatFunction<number> | FormatObject<number>
+    >();
+    expectTypeOf<Intl.NumberFormat>().toExtend<Formatter<number>>();
+    expectTypeOf<(value: number) => string>().toExtend<Formatter<number>>();
+  });
+});
+
+describe('アニメーションの型', () => {
+  test('Interpolator は t から値を返す関数', () => {
+    expectTypeOf<Interpolator<string>>().toEqualTypeOf<(t: number) => string>();
+  });
+
+  test('EasingFunction は t を t に変える関数', () => {
+    expectTypeOf<EasingFunction>().toEqualTypeOf<(t: number) => number>();
+    expectTypeOf(Math.sqrt).toExtend<EasingFunction>();
   });
 });
