@@ -3,7 +3,7 @@
 All notable changes to `@fringeworks/types` are documented in this file.\
 This project follows [Semantic Versioning](https://semver.org/).
 
-## 1.3.0 - Unreleased
+## 1.3.0 - 2026-11-20
 
 ### Added
 
